@@ -4,7 +4,7 @@ with lib;
 
 let
   cfg = config.services.fanservice;
-  execCommand = "${pkgs.fanservice}/bin/fanservice";
+  execCommand = "${pkgs.fanservice}/bin/fanservice run -b poweredge";
 in
 {
   options = {
@@ -21,7 +21,10 @@ in
        Restart = "always";
        RestartSec = "10s";
        User = "root";
-       Group = "root";
+       Group = "users";
+       RuntimeDirectory = "fanservice";
+       RuntimeDirectoryMode = "0755";
+       UMask = "0007";
       };
     };
   };

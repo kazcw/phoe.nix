@@ -2,15 +2,17 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "fanservice";
-  version = "0.1";
+  version = "0.3";
 
   src = fetchFromGitHub {
     owner = "kazcw";
     repo = "fanservice";
-    rev = "10f6115049f051882953f4668241dec18522dd46";
-    hash = "sha256:04wanrznqaqfibmxgbyh0hcxvlmypdlhbinmkccikvjp4d04hz1i";
+    rev = "77d26d7ef9721ea11be4babc549c250c354be09a";
+    hash = "sha256:1444410g2w5xc5lzrm4g9zjlv0qn8gar0llfr7fc6cd68g1hxlxm";
   };
-  cargoSha256 = "0wifv3kypiqc6mw1sh2vdin3kv34n6d4fxx5xa0j926mswp81i8j";
+  cargoSha256 = "04an7y68v6hk8z5dd61pq2977v8s3n3l9d396n0019zyzy31dspz";
+
+  features = ["systemd"];
 
   meta = with lib; {
     description = "Fan speed daemon for PowerEdge servers";
