@@ -1,16 +1,14 @@
-{ lib, stdenv, rustPlatform, fetchFromGitHub, sqlite }:
+{ lib, stdenv, rustPlatform, fetchCrate, sqlite }:
 
 rustPlatform.buildRustPackage rec {
   pname = "jerbs";
-  version = "0.1";
+  version = "0.1.0";
 
-  src = fetchFromGitHub {
-    owner = "kazcw";
-    repo = "jerbs";
-    rev = "153540ad147b54877f84d09ab1acdefb1c0fbed2";
-    hash = "sha256:1qv3wfd2rnjj02sng4sqlvg8z1r1y092m964rnf91020j7fhj3ya";
+  src = fetchCrate {
+    inherit version pname;
+    sha256 = "0pq533glr4ly84m0h05xyr1ss6l4fxsfcjf5jbvmb39wgc66hrf4";
   };
-  cargoSha256 = "1y1fc9sd91hzb3fs8x2bm4y907kqlbvzx7ddg9hy02dzh050bfnq";
+  cargoSha256 = "088mq2b0ykhnixsfkc4mzy5sqd4hpgfrwzjx16y0fmm6r2cinmw3";
 
   meta = with lib; {
     description = "Command-line work-stealing scheduler.";
