@@ -1,18 +1,16 @@
-{ lib, stdenv, rustPlatform, fetchFromGitHub, lm_sensors, ipmiraw }:
+{ lib, stdenv, rustPlatform, fetchCrate, lm_sensors }:
 
 rustPlatform.buildRustPackage rec {
   pname = "fanservice";
-  version = "0.3";
+  version = "0.3.1";
 
-  src = fetchFromGitHub {
-    owner = "kazcw";
-    repo = "fanservice";
-    rev = "77d26d7ef9721ea11be4babc549c250c354be09a";
-    hash = "sha256:1444410g2w5xc5lzrm4g9zjlv0qn8gar0llfr7fc6cd68g1hxlxm";
+  src = fetchCrate {
+    inherit version pname;
+    sha256 = "12aib00c5nrg0jwgppvhf06qwanld0q4w3gbgh0b9d4xsd4i7wr2";
   };
-  cargoSha256 = "04an7y68v6hk8z5dd61pq2977v8s3n3l9d396n0019zyzy31dspz";
+  cargoSha256 = "0h7hbmm7f0dfq36h9c0h43x2n6wq6hgmrfcr9priw2vb0zxayrgb";
 
-  features = ["systemd"];
+  features = [ "systemd" ];
 
   meta = with lib; {
     description = "Fan speed daemon for PowerEdge servers";
@@ -21,5 +19,5 @@ rustPlatform.buildRustPackage rec {
     maintainers = with maintainers; [ kazcw ];
   };
 
-  buildInputs = [ lm_sensors ipmiraw ];
+  buildInputs = [ lm_sensors ];
 }
